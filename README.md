@@ -64,6 +64,7 @@ Sample Response after Registration:
 ```
 {
     "message": "User successfully verified for registration: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "verificationResult": "REGISTRATION_SUCCESS",
     "error": false
 }
 ```
@@ -71,6 +72,7 @@ Sample Response after Login:
 ```
 {
     "message": "Successfully logged in: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "verificationResult": "LOGIN_SUCCESS",
     "error": false
 }
 ```
