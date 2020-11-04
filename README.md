@@ -29,6 +29,10 @@ Local Base URL is: `http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/
 
 Live Base URL is: `https://FIREBASE_REGION-FIREBASE_PROJECT_NAME.cloudfunctions.net/ENDPOINT_NAME`
 
+You can use the following Postman Collection to send local test requests. Please set the environment variables of the collection for `firebase_project_name` and `firebase_region` before making any requests.
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/82e6c13a547162778814)
+
 ### createUser
 
 **POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/createUser
