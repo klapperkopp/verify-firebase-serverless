@@ -15,12 +15,12 @@
 
 ### Test Locally
 
-1. Copy example runtimeconfig `cp .runtimeconfig.json.example .runtimeconfig.json` and enter your Vonage API key and secret (only needed for local testing of functions)
+1. Copy example runtimeconfig `cp .runtimeconfig.json.example .runtimeconfig.json` and enter your Vonage API key and secret from the [Vonage Dashboard](https://dashboard.nexmo.com/) (only needed for local testing of functions)
 2. `firebase serve --only functions`
 
 ### Deploy and test on production
 
-1. To set Firebase Environment variables, run `firebase functions:config:set vonage.api_key="YOUR_VONAGE_API_KEY" vonage.api_secret="YOUR_VONAGE_API_SECRET"` (you only need to do this once)
+1. To set Firebase Environment variables, run `firebase functions:config:set vonage.api_key="YOUR_VONAGE_API_KEY" vonage.api_secret="YOUR_VONAGE_API_SECRET"` (you only need to do this once).
 2. Run `firebase deploy`
 
 ## API Endpoints
