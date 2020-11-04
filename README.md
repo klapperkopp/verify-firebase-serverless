@@ -28,6 +28,7 @@
 ### createUser
 
 Create a user from this endpoint. The user will be stored in Cloud Firestore. Phone number and password will be stored in hashed form.
+If a user phone number hash has been banned by using the **banPhoneHash** endpoint, registration is not allowed.
 
 Sample Request:
 
