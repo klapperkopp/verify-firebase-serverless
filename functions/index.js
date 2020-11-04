@@ -151,6 +151,7 @@ exports.verifyUser = functions.https.onRequest(async (request, response) => {
                 message: `User successfully verified for registration: ${JSON.stringify(
                   result
                 )}`,
+                verificationResult: "REGISTRATION_SUCCESS",
                 error: false,
               });
               return;
@@ -164,6 +165,7 @@ exports.verifyUser = functions.https.onRequest(async (request, response) => {
         } else {
           response.send({
             message: `Successfully logged in: ${JSON.stringify(result)}`,
+            verificationResult: "LOGIN_SUCCESS",
             error: false,
           });
         }
@@ -229,7 +231,8 @@ exports.loginUser = functions.https.onRequest(async (request, response) => {
               // if saved, send REST api response with success message
               response.send({
                 message: `You are logged in after you enter your SMS Code that was sent. Verify ID: ${verifyRequestId}`,
-                erro: true,
+                verifyRequestId: verifyRequestId,
+                error: false,
               });
               return null;
             })
@@ -246,6 +249,7 @@ exports.loginUser = functions.https.onRequest(async (request, response) => {
                     // send REST api response with error
                     response.send({
                       message: `Failed to store verify request ID to DB and failed to cancel Verify request. ${verifyRequestId}`,
+                      verifyRequestId: verifyRequestId,
                       error: true,
                     });
                   } else {
@@ -253,6 +257,7 @@ exports.loginUser = functions.https.onRequest(async (request, response) => {
                     // send REST api response with error
                     response.send({
                       message: `Cancelled the verify request, because of error when storing verify request ID to DB: ${e}`,
+                      verifyRequestId: verifyRequestId,
                       error: true,
                     });
                   }
@@ -275,7 +280,10 @@ exports.loginUser = functions.https.onRequest(async (request, response) => {
 exports.banPhoneHash = functions.https.onRequest(async (request, response) => {
   const { phoneHash } = request.body;
   await db.collection("bannedPhoneHashes").doc(`${phoneHash}`).set({});
-  response.send({ message: `Phone Number banned: ${phoneHash}`, error: false });
+  response.send({
+    message: `Phone number hash successfully banned: ${phoneHash}`,
+    error: false,
+  });
 });
 
 // REST endpoint for remove the ban of a phone number hash
@@ -283,7 +291,7 @@ exports.removeBan = functions.https.onRequest(async (request, response) => {
   const { phoneHash } = request.body;
   await db.collection("bannedPhoneHashes").doc(`${phoneHash}`).delete();
   response.send({
-    message: `Phone Number removed from ban list: ${phoneHash}`,
+    message: `Phone number hash removed from ban list: ${phoneHash}`,
     error: false,
   });
 });
@@ -301,6 +309,7 @@ exports.checkIfBanned = functions.https.onRequest(async (request, response) => {
   } else if (checkBan(phoneHash) === null) {
     response.send({
       message: "Error checking if this phone number is currently banned.",
+      isBanned: "unknown",
       error: true,
     });
   } else {
