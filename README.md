@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Create a Firebase Project using the (Firebase Console)[https://console.firebase.google.com/]
+1. Create a Firebase Project using the [Firebase Console](https://console.firebase.google.com/)
 2. Enable Billing on your project by switching to the Blaze plan
 3. Enable Cloud Firestore by going to `https://console.firebase.google.com/project/YOUR_PROJECT_NAME/firestore`
 4. Clone or download this repo and open the main directory (`cd verify-firebase-serverless`).
