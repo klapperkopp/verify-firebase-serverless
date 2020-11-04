@@ -42,7 +42,7 @@ Sample Response:
 ```
 {
     "message": "User created: testuser",
-    "verifyRequestId": "e088f66f177d42deb223eccbbfeaebaf"
+    "verifyRequestId": "VERIFY_REQUEST_ID"
 }
 ```
 
@@ -56,7 +56,7 @@ Sample Request:
 
 ```
 {
-    "request_id": "VERIFY_REQUEST_ID",
+    "verifyRequestId": "VERIFY_REQUEST_ID",
     "code": "USER_PIN_CODE"
 }
 ```
@@ -64,6 +64,8 @@ Sample Response after Registration:
 ```
 {
     "message": "User successfully verified for registration: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "verificationResult": "REGISTRATION_SUCCESS",
+    "verifyRequestId": "VERIFY_REQUEST_ID",
     "error": false
 }
 ```
@@ -71,6 +73,8 @@ Sample Response after Login:
 ```
 {
     "message": "Successfully logged in: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "verificationResult": "LOGIN_SUCCESS",
+    "verifyRequestId": "VERIFY_REQUEST_ID",
     "error": false
 }
 ```
@@ -91,6 +95,7 @@ Sample Response:
 ```
 {
     "message": "You are logged in after you enter your SMS Code that was sent. Verify ID: 49c6f20a3cf74970b02c580b2b31ecaa",
+    "verifyRequestId": "VERIFY_REQUEST_ID",
     "error": false
 }
 ```
