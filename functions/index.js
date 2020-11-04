@@ -62,7 +62,7 @@ exports.createUser = functions.https.onRequest(async (request, response) => {
         } else {
           // get verify request id if verify request was send successfully
           const verifyRequestId = result.request_id;
-          functions.logger.info("request_id", verifyRequestId);
+          functions.logger.info("Verify request_id", verifyRequestId);
           // store user data and verify request id to cloud firestore DB
           const docRef = db.collection("users").doc(`${username}`);
           docRef
@@ -94,11 +94,11 @@ exports.createUser = functions.https.onRequest(async (request, response) => {
 
 // REST endpoint which is called when the user enters the verification code
 exports.verifyUser = functions.https.onRequest(async (request, response) => {
-  const { request_id, code } = request.body;
+  const { verifyRequestId, code } = request.body;
   // get type of request from DB
   const usersRef = db.collection("users");
   const snapshot = await usersRef
-    .where("last_verify_request_id", "==", request_id)
+    .where("last_verify_request_id", "==", verifyRequestId)
     .limit(1)
     .get();
 
@@ -121,7 +121,7 @@ exports.verifyUser = functions.https.onRequest(async (request, response) => {
   // check verify request
   vonage.verify.check(
     {
-      request_id,
+      request_id: verifyRequestId,
       code,
     },
     (err, result) => {
@@ -151,6 +151,7 @@ exports.verifyUser = functions.https.onRequest(async (request, response) => {
                 message: `User successfully verified for registration: ${JSON.stringify(
                   result
                 )}`,
+                verifyRequestId: verifyRequestId,
                 verificationResult: "REGISTRATION_SUCCESS",
                 error: false,
               });
@@ -165,6 +166,7 @@ exports.verifyUser = functions.https.onRequest(async (request, response) => {
         } else {
           response.send({
             message: `Successfully logged in: ${JSON.stringify(result)}`,
+            verifyRequestId: verifyRequestId,
             verificationResult: "LOGIN_SUCCESS",
             error: false,
           });
