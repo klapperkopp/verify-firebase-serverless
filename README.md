@@ -25,7 +25,12 @@
 
 ## API Endpoints
 
+Local Base URL is: `http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/ENDPOINT_NAME`
+Local Base URL is: `https://FIREBASE_REGION-FIREBASE_PROJECT_NAME.cloudfunctions.net/ENDPOINT_NAME`
+
 ### createUser
+
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/createUser
 
 Create a user from this endpoint. The user will be stored in Cloud Firestore. Phone number and password will be stored in hashed form.
 If a user phone number hash has been banned by using the **banPhoneHash** endpoint, registration is not allowed.
@@ -39,7 +44,9 @@ Sample Request:
     "password": "password"
 }
 ```
+
 Sample Response:
+
 ```
 {
     "message": "User created: testuser",
@@ -48,6 +55,8 @@ Sample Response:
 ```
 
 ### verifyUser
+
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/verifyUser
 
 Use this endpoint to check the Verification PIN that has been sent to the user. You can call this after the user enters the PIN code into your frontend.
 
@@ -61,7 +70,9 @@ Sample Request:
     "code": "USER_PIN_CODE"
 }
 ```
+
 Sample Response after Registration:
+
 ```
 {
     "message": "User successfully verified for registration: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
@@ -70,7 +81,9 @@ Sample Response after Registration:
     "error": false
 }
 ```
+
 Sample Response after Login:
+
 ```
 {
     "message": "Successfully logged in: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
@@ -82,6 +95,8 @@ Sample Response after Login:
 
 ### loginUser
 
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/loginUser
+
 Login a user. If the password is correct, this will automatically send an SMS PIN Code to the users phone number, which can then be checked with the _verifyUser_ API endpoint to log the user in.
 
 Sample Request:
@@ -92,7 +107,9 @@ Sample Request:
     "password": "password"
 }
 ```
+
 Sample Response:
+
 ```
 {
     "message": "You are logged in after you enter your SMS Code that was sent. Verify ID: 49c6f20a3cf74970b02c580b2b31ecaa",
@@ -103,6 +120,8 @@ Sample Response:
 
 ### banPhoneHash
 
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/banPhoneHash
+
 Ban a users hashed phone number (which can be taken from the user record in the Cloud Firestore).
 
 Sample Request:
@@ -112,7 +131,9 @@ Sample Request:
     "phoneHash": "HASHED_PHONE_NUMBER"
 }
 ```
+
 Sample Response:
+
 ```
 {
     "message": "Phone Number banned: PHONE_NUMBER_HASH",
@@ -120,8 +141,9 @@ Sample Response:
 }
 ```
 
-
 ### removeBan
+
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/removeBan
 
 Remove a banned user phone hash from the list.
 
@@ -132,7 +154,9 @@ Sample Request:
     "phoneHash": "HASHED_PHONE_NUMBER"
 }
 ```
+
 Sample Response:
+
 ```
 {
     "message": "Phone Number removed from ban list: PHONE_NUMBER_HASH",
@@ -141,6 +165,8 @@ Sample Response:
 ```
 
 ### checkIfBanned
+
+**POST** http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/checkIfBanned
 
 Check at any time if a users hashed phone number has been banned. Even after the user is deleted, this will still be available if he tries to register again.
 
