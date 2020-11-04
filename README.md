@@ -38,6 +38,13 @@ Sample Request:
     "password": "password"
 }
 ```
+Sample Response:
+```
+{
+    "message": "User created: testuser",
+    "verifyRequestId": "e088f66f177d42deb223eccbbfeaebaf"
+}
+```
 
 ### verifyUser
 
@@ -53,6 +60,20 @@ Sample Request:
     "code": "USER_PIN_CODE"
 }
 ```
+Sample Response after Registration:
+```
+{
+    "message": "User successfully verified for registration: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "error": false
+}
+```
+Sample Response after Login:
+```
+{
+    "message": "Successfully logged in: {\"request_id\":\"VERIFY_REQUEST_ID\",\"status\":\"0\",\"event_id\":\"VERIFY_EVENT_ID\",\"price\":\"0.01\",\"currency\":\"EUR\",\"estimated_price_messages_sent\":\"0.01\"}",
+    "error": false
+}
+```
 
 ### loginUser
 
@@ -64,6 +85,13 @@ Sample Request:
 {
     "username": "testuser",
     "password": "password"
+}
+```
+Sample Response:
+```
+{
+    "message": "You are logged in after you enter your SMS Code that was sent. Verify ID: 49c6f20a3cf74970b02c580b2b31ecaa",
+    "error": false
 }
 ```
 
@@ -78,6 +106,14 @@ Sample Request:
     "phoneHash": "HASHED_PHONE_NUMBER"
 }
 ```
+Sample Response:
+```
+{
+    "message": "Phone Number banned: PHONE_NUMBER_HASH",
+    "error": false
+}
+```
+
 
 ### removeBan
 
@@ -90,6 +126,13 @@ Sample Request:
     "phoneHash": "HASHED_PHONE_NUMBER"
 }
 ```
+Sample Response:
+```
+{
+    "message": "Phone Number removed from ban list: PHONE_NUMBER_HASH",
+    "error": false
+}
+```
 
 ### checkIfBanned
 
@@ -100,5 +143,15 @@ Sample Request:
 ```
 {
     "phoneHash": "HASHED_PHONE_NUMBER"
+}
+```
+
+Sample Response:
+
+```
+{
+    "message": "This phone number is currently banned.",
+    "isBanned": true,
+    "error": false
 }
 ```
