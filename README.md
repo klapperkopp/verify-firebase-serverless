@@ -192,3 +192,11 @@ Sample Response:
     "error": false
 }
 ```
+
+
+## Standard User flow
+
+1. User registers via **#createUser** and will get automatic SMS Code
+2. User enter PIN Code into your User Interface and Code will be checked via **#verifyUser**, User will be marked as "verified" in the database if code is correct
+3. User Logs into the app with his password which is send to **#loginUser**, then gets automated SMS code
+4. User enters Login Code which is checked via **#verifyUser** to allow Login
