@@ -26,7 +26,8 @@
 ## API Endpoints
 
 Local Base URL is: `http://localhost:5001/FIREBASE_PROJECT_NAME/FIREBASE_REGION/ENDPOINT_NAME`
-Local Base URL is: `https://FIREBASE_REGION-FIREBASE_PROJECT_NAME.cloudfunctions.net/ENDPOINT_NAME`
+
+Live Base URL is: `https://FIREBASE_REGION-FIREBASE_PROJECT_NAME.cloudfunctions.net/ENDPOINT_NAME`
 
 ### createUser
 
